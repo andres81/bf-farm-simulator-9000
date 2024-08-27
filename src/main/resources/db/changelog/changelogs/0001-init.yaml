@@ -1,0 +1,21 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  Account
+       author:  André Schepers
+       changes:
+         -  createTable:
+              columns:
+                -  column:
+                     name:  id
+                     type:  varchar(255)
+                     constraints:
+                       primaryKey: true
+                       nullable: false
+                - column:
+                    name: account_id
+                    type: uuid
+                    constraints:
+                      nullable: false
+              remarks:  A String
+              schemaName:  public
+              tableName:  person
