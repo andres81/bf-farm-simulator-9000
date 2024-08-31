@@ -55,3 +55,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Draw.io ###
+**/*.drawio.dtmp
+**/*.drawio.bkp
