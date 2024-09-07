@@ -14,11 +14,11 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.output;
 
-import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
+import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccountPassword;
 
-public interface CreateUserAccountUseCase {
+public interface UserAccountPasswordPersistencePort {
 
-  UserAccount createAccount(String email, String userName, String password);
+  void persistUserAccountPassword(UserAccountPassword password);
 }

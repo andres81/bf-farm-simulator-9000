@@ -7,15 +7,62 @@ databaseChangeLog:
               columns:
                 -  column:
                      name:  id
-                     type:  varchar(255)
+                     type:  BIGINT
                      constraints:
                        primaryKey: true
                        nullable: false
                 - column:
                     name: account_id
-                    type: uuid
+                    type: UUID
                     constraints:
                       nullable: false
-              remarks:  A String
+                      unique: true
+                - column:
+                    name: username
+                    type: TEXT
+                    constraints:
+                      nullable: false
+                      unique: true
+                - column:
+                    name: email
+                    type: TEXT
+                    constraints:
+                      nullable: false
+                      unique: true
               schemaName:  public
-              tableName:  person
+              tableName:  user_account
+         - addAutoIncrement:
+             columnDataType: BIGINT
+             columnName: id
+             defaultOnNull: true
+             generationType: BY DEFAULT
+             tableName: user_account
+         - createTable:
+             columns:
+               - column:
+                   name: id
+                   type: BIGINT
+                   constraints:
+                     primaryKey: true
+                     nullable: false
+               - column:
+                   name: user_account_id
+                   type: UUID
+                   constraints:
+                     nullable: false
+                     unique: true
+               - column:
+                   name: password
+                   type: TEXT
+                   constraints:
+                     nullable: false
+                     unique: true
+             schemaName: public
+             tableName: user_account_password
+         - addAutoIncrement:
+             columnDataType: BIGINT
+             columnName: id
+             defaultOnNull: true
+             generationType: BY DEFAULT
+             tableName: user_account_password
+

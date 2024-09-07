@@ -14,11 +14,18 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.service.exception;
 
-import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
+import lombok.Getter;
 
-public interface CreateUserAccountUseCase {
+@Getter
+public class ResourceAlreadyExistsException extends RuntimeException {
 
-  UserAccount createAccount(String email, String userName, String password);
+  private final String message;
+  private final ExceptionErrorCode exceptionErrorCode;
+
+  public ResourceAlreadyExistsException(String message) {
+    this.message = message;
+    this.exceptionErrorCode = ExceptionErrorCode.RESOURCE_ALREADY_EXISTS;
+  }
 }

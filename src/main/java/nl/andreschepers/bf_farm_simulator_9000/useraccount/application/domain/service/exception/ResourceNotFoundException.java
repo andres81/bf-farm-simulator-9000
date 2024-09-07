@@ -14,11 +14,6 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.service.exception;
 
-import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
-
-public interface CreateUserAccountUseCase {
-
-  UserAccount createAccount(String email, String userName, String password);
-}
+public class ResourceNotFoundException extends RuntimeException {}

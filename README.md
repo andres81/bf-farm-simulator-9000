@@ -28,6 +28,7 @@ game, of course that would be wonderful!
 * https://medium.com/@alessandro.traversi/understanding-the-solution-architecture-document-sad-with-a-lean-template-050287994a88
 * https://www.dineshonjava.com/a-practical-example-of-hexagonal-architecture-in-java/
 * https://github.com/thombergs/buckpal/tree/master
+* https://www.cybertec-postgresql.com/en/uuid-serial-or-identity-columns-for-postgresql-auto-generated-primary-keys/
 
 ## Architecture & Software Design
 

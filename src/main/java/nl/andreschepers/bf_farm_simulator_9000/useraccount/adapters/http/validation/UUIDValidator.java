@@ -14,8 +14,21 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.service;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.adapters.http.validation;
 
-import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input.CreateUserAccountUseCase;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import java.util.UUID;
 
-public class CreateUserUserAccountService implements CreateUserAccountUseCase {}
+public class UUIDValidator implements ConstraintValidator<ValidUUID, String> {
+
+  @Override
+  public boolean isValid(String value, ConstraintValidatorContext context) {
+    try {
+      UUID.fromString(value);
+      return true;
+    } catch (Exception ex) {
+      return false;
+    }
+  }
+}

@@ -14,11 +14,15 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity;
 
-import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
+import lombok.Builder;
+import lombok.Data;
 
-public interface CreateUserAccountUseCase {
+@Data
+@Builder
+public class UserAccountPassword {
 
-  UserAccount createAccount(String email, String userName, String password);
+  private UserAccount.UserAccountId userAccountId;
+  private String password;
 }

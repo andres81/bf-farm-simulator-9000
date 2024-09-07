@@ -14,11 +14,18 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.adapters.http;
 
-import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
+import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.service.exception.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-public interface CreateUserAccountUseCase {
+@RestControllerAdvice
+public class ExceptionHandling {
 
-  UserAccount createAccount(String email, String userName, String password);
+  @ExceptionHandler({ResourceNotFoundException.class})
+  public ResponseEntity<String> handleRuntimeException(RuntimeException e) {
+    return ResponseEntity.notFound().build();
+  }
 }

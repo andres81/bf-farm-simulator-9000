@@ -16,9 +16,15 @@
 
 package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
 
+import java.util.Optional;
+import java.util.UUID;
 import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
 
-public interface CreateUserAccountUseCase {
+public interface FindUserAccountUseCase {
 
-  UserAccount createAccount(String email, String userName, String password);
+  UserAccount findUserAccountByAccountId(UUID accountId);
+
+  UserAccount findUserAccountByEmail(String email);
+
+  UserAccount findUserAccountByUsername(String username);
 }

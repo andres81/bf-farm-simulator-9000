@@ -14,22 +14,37 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.adapters.persistence.jpaentity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Entity
+@Table(name = "user_account")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class UserAccount {
+public class UserAccountJpaEntity {
 
-  private final UserAccountId userAccountId;
-  
-  private String userName;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  private UUID accountId;
+
+  private String username;
 
   private String email;
-
-  public record UserAccountId(UUID id) {}
 
 }

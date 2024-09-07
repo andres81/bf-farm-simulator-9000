@@ -14,11 +14,24 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.output;
 
+import java.util.Optional;
+import java.util.UUID;
+import nl.andreschepers.bf_farm_simulator_9000.useraccount.adapters.persistence.jpaentity.UserAccountJpaEntity;
 import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
 
-public interface CreateUserAccountUseCase {
+public interface UserAccountPersistencePort {
 
-  UserAccount createAccount(String email, String userName, String password);
+  boolean existsByUserName(String userName);
+
+  boolean existsByEmail(String email);
+
+  void persistUserAccount(UserAccount userAccount);
+
+  Optional<UserAccount> findUserAccountByAccountId(UUID accountId);
+
+  Optional<UserAccount> findUserAccountByUsername(String username);
+
+  Optional<UserAccount> findUserAccountByEmail(String email);
 }
