@@ -14,14 +14,25 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.util.impl;
 
-import java.util.UUID;
-import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
+import static org.junit.jupiter.api.Assertions.*;
 
-public interface FindUserAccountUseCase {
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-  UserAccount findUserAccountByAccountId(UUID accountId);
+@ExtendWith(MockitoExtension.class)
+class Argon2PasswordHashUtilTest {
 
-  UserAccount findUserAccountByUsernameOrEmail(String username, String email);
+  private static final String PASSWORD = "password";
+
+  @InjectMocks private Argon2PasswordHashUtil sut;
+
+  @Test
+  void hashSaltPassword() {
+    var salthash = sut.hashSaltPassword(PASSWORD);
+    assertTrue(sut.verifyPassword(PASSWORD, salthash));
+  }
 }

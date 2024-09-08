@@ -38,14 +38,22 @@ public class FindUserAccountService implements FindUserAccountUseCase {
   }
 
   @Override
-  public UserAccount findUserAccountByEmail(String email) {
+  public UserAccount findUserAccountByUsernameOrEmail(String username, String email) {
+    if (username != null) {
+      return findUserAccountByUsername(username);
+    } else if (email != null) {
+      return findUserAccountByEmail(email);
+    }
+    throw new ResourceNotFoundException();
+  }
+
+  private UserAccount findUserAccountByEmail(String email) {
     return userAccountPersistencePort
         .findUserAccountByEmail(email)
         .orElseThrow(ResourceNotFoundException::new);
   }
 
-  @Override
-  public UserAccount findUserAccountByUsername(String username) {
+  private UserAccount findUserAccountByUsername(String username) {
     return userAccountPersistencePort
         .findUserAccountByUsername(username)
         .orElseThrow(ResourceNotFoundException::new);

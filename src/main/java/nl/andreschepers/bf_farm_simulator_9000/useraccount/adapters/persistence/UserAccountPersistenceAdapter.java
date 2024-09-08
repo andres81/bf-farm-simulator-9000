@@ -58,7 +58,8 @@ public class UserAccountPersistenceAdapter implements UserAccountPersistencePort
         .map(
             userAccountJpaEntity ->
                 UserAccount.builder()
-                    .userAccountId(new UserAccount.UserAccountId(UUID.randomUUID()))
+                    .userAccountId(
+                        new UserAccount.UserAccountId(userAccountJpaEntity.getAccountId()))
                     .userName(userAccountJpaEntity.getUsername())
                     .email(userAccountJpaEntity.getEmail())
                     .build());
@@ -66,12 +67,29 @@ public class UserAccountPersistenceAdapter implements UserAccountPersistencePort
 
   @Override
   public Optional<UserAccount> findUserAccountByUsername(String username) {
-    return Optional.empty();
+    return userAccountJpaEntityRepository
+        .findByUsername(username)
+        .map(
+            userAccountJpaEntity ->
+                UserAccount.builder()
+                    .userAccountId(
+                        new UserAccount.UserAccountId(userAccountJpaEntity.getAccountId()))
+                    .userName(userAccountJpaEntity.getUsername())
+                    .email(userAccountJpaEntity.getEmail())
+                    .build());
   }
 
   @Override
   public Optional<UserAccount> findUserAccountByEmail(String email) {
-//    return userAccountJpaEntityRepository.findByEmail(email);
-    return null;
+    return userAccountJpaEntityRepository
+        .findByEmail(email)
+        .map(
+            userAccountJpaEntity ->
+                UserAccount.builder()
+                    .userAccountId(
+                        new UserAccount.UserAccountId(userAccountJpaEntity.getAccountId()))
+                    .userName(userAccountJpaEntity.getUsername())
+                    .email(userAccountJpaEntity.getEmail())
+                    .build());
   }
 }

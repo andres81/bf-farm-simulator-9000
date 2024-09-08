@@ -14,14 +14,11 @@
  *    limitations under the License.
  */
 
-package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.ports.input;
+package nl.andreschepers.bf_farm_simulator_9000.useraccount.application.util;
 
-import java.util.UUID;
-import nl.andreschepers.bf_farm_simulator_9000.useraccount.application.domain.entity.UserAccount;
+public interface PasswordHashUtil {
 
-public interface FindUserAccountUseCase {
+  String hashSaltPassword(String rawPassword);
 
-  UserAccount findUserAccountByAccountId(UUID accountId);
-
-  UserAccount findUserAccountByUsernameOrEmail(String username, String email);
+  boolean verifyPassword(String password, String hashSaltPassword);
 }
