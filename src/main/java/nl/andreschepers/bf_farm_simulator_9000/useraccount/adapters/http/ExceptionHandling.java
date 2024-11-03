@@ -63,7 +63,7 @@ public class ExceptionHandling {
         .body(
             ErrorResponseBody.builder()
                 .errorCode(ErrorCode.SERVER_ERROR)
-                .errorMessages(List.of(""))
+                .errorMessages(List.of("An unexpected error occurred, please contact support."))
                 .build());
   }
 

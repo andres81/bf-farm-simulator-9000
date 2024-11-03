@@ -42,9 +42,10 @@ public class UserAccountController {
   private final CreateUserAccountUseCase createUserAccountUseCase;
   private final FindUserAccountUseCase findUserAccountUseCase;
 
-  @GetMapping
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   @RequestMapping("/{accountId}")
-  public UserAccountResponseDto getUserAccountByAccountId(@PathVariable("accountId") @ValidUUID String accountId) {
+  public UserAccountResponseDto getUserAccountByAccountId(
+      @PathVariable("accountId") @ValidUUID String accountId) {
     var domainUserAccount = findUserAccountUseCase.findUserAccountByAccountId(
         UUID.fromString(accountId));
     return new UserAccountResponseDto(domainUserAccount.getUserAccountId().id(),

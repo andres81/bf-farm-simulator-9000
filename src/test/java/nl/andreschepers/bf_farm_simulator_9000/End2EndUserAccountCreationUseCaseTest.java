@@ -17,6 +17,7 @@
 package nl.andreschepers.bf_farm_simulator_9000;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -31,6 +32,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -119,7 +121,14 @@ class End2EndUserAccountCreationUseCaseTest {
     assertEquals(userAccountId, userAccount.accountId());
 
     assertEquals(1, userAccountJpaEntityRepository.findAll().size());
-    assertEquals(1, userAccountPasswordJpaEntityRepository.findAll().size());
+
+    var storedPasswords = userAccountPasswordJpaEntityRepository.findAll();
+    var storedPassword = storedPasswords.get(0);
+
+    assertEquals(1, storedPasswords.size());
+    assertTrue(
+        Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8()
+            .matches(PASSWORD, storedPassword.getPassword()));
   }
 
   private <T> T deserialize(String contentAsString, Class<T> userAccountClass)
